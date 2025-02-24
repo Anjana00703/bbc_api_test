@@ -97,11 +97,12 @@ class StepDefinitions extends ScalaDsl with EN with Matchers {
         val allDatesParsedSuccessfully = parsedDates.forall(_.isSuccess)
 
         allDatesParsedSuccessfully mustBe true
-        case None =>
+        
+      case None =>
         fail("Date header is not present in the response.")
     }
   }
-
+  
 
   Then("the error object had the properties {string} and {string}") { (property1: String, property2: String) =>
     val responseBody = response.text()
@@ -121,7 +122,7 @@ class StepDefinitions extends ScalaDsl with EN with Matchers {
     }
   }
 
-
+  
   Then("there should be an item with duration greater than {int}") { (minDuration: Int) =>
     val jsonString = response.text()
     scheduleItems = parseSchedule(jsonString)
